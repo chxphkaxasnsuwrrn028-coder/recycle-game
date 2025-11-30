@@ -394,3 +394,108 @@ body {
         font-size: 8rem;
     }
 }
+
+/* Responsive for Tablets (Portrait) */
+@media (max-width: 768px) {
+    .game-container {
+        width: 90%;
+        height: 85vh;
+        padding: 15px;
+    }
+
+    .header {
+        font-size: 1.2rem;
+    }
+
+    #waste-icon {
+        font-size: 5rem;
+    }
+
+    #waste-name {
+        font-size: 1.8rem;
+    }
+
+    .bins-container {
+        gap: 10px;
+        height: 160px;
+    }
+
+    .bin-icon {
+        font-size: 2.5rem;
+    }
+
+    .bin-label {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive for Mobile Phones */
+@media (max-width: 480px) {
+    .game-container {
+        width: 95%;
+        height: 90vh;
+        padding: 10px;
+    }
+
+    .header {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    #waste-item {
+        padding: 15px 20px;
+    }
+
+    #waste-icon {
+        font-size: 4rem;
+    }
+
+    #waste-name {
+        font-size: 1.5rem;
+    }
+
+    .bins-container {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2x2 Grid */
+        height: auto;
+        /* Let it grow */
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .bin {
+        padding: 15px;
+        height: 120px;
+        /* Taller bins for easier tapping */
+    }
+
+    .bin-icon {
+        font-size: 3rem;
+    }
+
+    .bin-label {
+        font-size: 1.1rem;
+    }
+
+    /* Overlay Adjustments */
+    .message-box h1 {
+        font-size: 2rem;
+    }
+
+    .message-box p {
+        font-size: 1.2rem;
+    }
+
+    .mode-buttons {
+        gap: 10px;
+    }
+
+    .mode-btn {
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    #feedback-icon {
+        font-size: 8rem;
+    }
+}
