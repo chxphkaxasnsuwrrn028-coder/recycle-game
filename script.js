@@ -71,6 +71,8 @@ let currentMode = 'solo';
 const rewardModal = document.getElementById('reward-modal');
 const rewardMsg = document.getElementById('reward-msg');
 const feedbackIcon = document.getElementById('feedback-icon');
+const sfxCorrect = document.getElementById('sfx-correct');
+const sfxWrong = document.getElementById('sfx-wrong');
 
 function startGame(mode) {
     currentMode = mode;
@@ -141,6 +143,10 @@ function checkAnswer(color) {
         showFeedback(true);
         triggerFireworks();
         
+        // Sound Effect
+        sfxCorrect.currentTime = 0;
+        sfxCorrect.play().catch(e => console.log(e));
+        
         // Check Rewards (100, 200, 300, 400, 500)
         if (score > 0 && score % 100 === 0 && score <= 500) {
             showReward(score);
@@ -157,6 +163,10 @@ function checkAnswer(color) {
         
         // Visual Feedback
         showFeedback(false);
+        
+        // Sound Effect
+        sfxWrong.currentTime = 0;
+        sfxWrong.play().catch(e => console.log(e));
         
         wasteItemContainer.classList.add('wrong');
         setTimeout(() => wasteItemContainer.classList.remove('wrong'), 500);
