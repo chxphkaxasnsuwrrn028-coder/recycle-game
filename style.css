@@ -433,69 +433,93 @@ body {
 @media (max-width: 480px) {
     .game-container {
         width: 95%;
-        height: 90vh;
+        height: 65dvh;
+        /* Reduced height to 65dvh */
+        max-height: 600px;
         padding: 10px;
+        justify-content: space-between;
     }
 
     .header {
-        font-size: 1rem;
-        margin-bottom: 15px;
+        font-size: 0.8rem;
+        margin-bottom: 2px;
+        flex-shrink: 0;
+    }
+
+    #game-area {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2px 0;
     }
 
     #waste-item {
-        padding: 15px 20px;
+        padding: 8px;
+        /* Compact card */
+        width: 100%;
+        max-width: 240px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     #waste-icon {
-        font-size: 4rem;
+        font-size: 3rem;
+        /* Smaller icon */
+        margin-bottom: 2px;
     }
 
     #waste-name {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     .bins-container {
         grid-template-columns: repeat(2, 1fr);
-        /* 2x2 Grid */
         height: auto;
-        /* Let it grow */
-        gap: 10px;
-        margin-top: 15px;
+        gap: 6px;
+        margin-top: 5px;
+        flex-shrink: 0;
     }
 
     .bin {
-        padding: 15px;
-        height: 120px;
-        /* Taller bins for easier tapping */
+        padding: 5px;
+        height: 70px;
+        /* Very compact bins */
     }
 
     .bin-icon {
-        font-size: 3rem;
+        font-size: 1.5rem;
+        margin-bottom: 0;
     }
 
     .bin-label {
-        font-size: 1.1rem;
+        font-size: 0.8rem;
     }
 
     /* Overlay Adjustments */
     .message-box h1 {
         font-size: 2rem;
+        /* Increased from 1.5rem */
     }
 
     .message-box p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        /* Increased from 0.9rem */
+        margin-bottom: 15px;
     }
 
     .mode-buttons {
         gap: 10px;
+        /* Increased gap */
     }
 
     .mode-btn {
         padding: 12px;
-        font-size: 1rem;
+        /* Increased padding */
+        font-size: 1.1rem;
+        /* Increased font size */
     }
 
     #feedback-icon {
-        font-size: 8rem;
+        font-size: 4rem;
     }
 }
