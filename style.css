@@ -1,0 +1,396 @@
+:root {
+    --yellow: #f1c40f;
+    --green: #2ecc71;
+    --blue: #3498db;
+    --red: #e74c3c;
+    --bg: #ecf0f1;
+    --text: #2c3e50;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Kanit', sans-serif;
+}
+
+body {
+    background: url('bg.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.game-container {
+    background: rgba(255, 255, 255, 0.85);
+    /* Semi-transparent */
+    backdrop-filter: blur(5px);
+    width: 95%;
+    max-width: 900px;
+    /* Wider for horizontal layout */
+    height: 80vh;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+#game-area {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#waste-item {
+    text-align: center;
+    transition: transform 0.3s;
+    background: white;
+    padding: 20px 40px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.waste-bounce {
+    animation: bounce 2s infinite;
+}
+
+#waste-icon {
+    font-size: 6rem;
+    margin-bottom: 10px;
+}
+
+#waste-name {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text);
+}
+
+.bins-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columns (Horizontal) */
+    gap: 15px;
+    margin-top: 20px;
+    height: 180px;
+    /* Fixed height for bins */
+}
+
+.bin {
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    height: 100%;
+}
+
+.bin:active {
+    transform: scale(0.95);
+}
+
+.bin-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.bin-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.yellow {
+    background-color: var(--yellow);
+    color: #333;
+    text-shadow: none;
+    border: 4px solid #f39c12;
+}
+
+.green {
+    background-color: var(--green);
+    border: 4px solid #27ae60;
+}
+
+.blue {
+    background-color: var(--blue);
+    border: 4px solid #2980b9;
+}
+
+.red {
+    background-color: var(--red);
+    border: 4px solid #c0392b;
+}
+
+/* Overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 10;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.message-box {
+    text-align: center;
+}
+
+.message-box h1 {
+    font-size: 3rem;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.message-box p {
+    font-size: 1.5rem;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+.mode-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.mode-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Kanit', sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mode-btn:nth-child(1) {
+    background-color: #FF6B6B;
+}
+
+/* Teacher - Red/Pink */
+.mode-btn:nth-child(2) {
+    background-color: #4ECDC4;
+}
+
+/* Solo - Teal */
+.mode-btn:nth-child(3) {
+    background-color: #FFE66D;
+    color: #333;
+}
+
+/* Friends - Yellow */
+
+.mode-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.reward-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#start-btn,
+.btn {
+    /* Reusing generic btn style */
+    background-color: var(--green);
+    color: white;
+    border: none;
+    padding: 15px 50px;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+    transition: transform 0.2s;
+}
+
+#start-btn:hover,
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Feedback Animations */
+.correct {
+    animation: correctPulse 0.5s;
+}
+
+.wrong {
+    animation: wrongShake 0.5s;
+}
+
+@keyframes correctPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes wrongShake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+/* Feedback Overlay */
+.feedback-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    pointer-events: none;
+}
+
+#feedback-icon {
+    font-size: 15rem;
+    opacity: 0;
+    text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.animate-feedback {
+    animation: bounceInOut 1s ease-in-out;
+}
+
+@keyframes bounceInOut {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    20% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    30% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    70% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* Responsive for Mobile Landscape */
+@media (max-height: 500px) {
+    .game-container {
+        height: 95vh;
+        padding: 10px;
+    }
+
+    .bins-container {
+        height: 120px;
+    }
+
+    #waste-icon {
+        font-size: 3rem;
+    }
+
+    #waste-name {
+        font-size: 1.5rem;
+    }
+
+    .header {
+        margin-bottom: 5px;
+    }
+
+    #feedback-icon {
+        font-size: 8rem;
+    }
+}

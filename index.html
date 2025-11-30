@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมแยกขยะ (Waste Sorting Game)</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="game-container">
+        <div class="header">
+            <div class="score-board">คะแนน: <span id="score">0</span></div>
+            <div class="timer">เวลา: <span id="timer">60</span>s</div>
+        </div>
+
+        <div id="game-area">
+            <div id="waste-item" class="waste-bounce">
+                <div id="waste-icon">🗑️</div>
+                <div id="waste-name">กดเริ่มเกมเพื่อเล่น</div>
+            </div>
+        </div>
+
+        <div class="bins-container">
+            <button class="bin yellow" onclick="checkAnswer('yellow')">
+                <div class="bin-icon">♻️</div>
+                <div class="bin-label">รีไซเคิล</div>
+            </button>
+            <button class="bin green" onclick="checkAnswer('green')">
+                <div class="bin-icon">🍃</div>
+                <div class="bin-label">ขยะเปียก</div>
+            </button>
+            <button class="bin blue" onclick="checkAnswer('blue')">
+                <div class="bin-icon">🗑️</div>
+                <div class="bin-label">ทั่วไป</div>
+            </button>
+            <button class="bin red" onclick="checkAnswer('red')">
+                <div class="bin-icon">☣️</div>
+                <div class="bin-label">อันตราย</div>
+            </button>
+        </div>
+
+        <div id="overlay" class="overlay active">
+            <div class="message-box">
+                <h1 id="title-msg">เกมแยกขยะ 🌍</h1>
+                <p id="desc-msg">เลือกโหมดการเล่น</p>
+                <div class="mode-buttons">
+                    <button class="mode-btn" onclick="startGame('teacher')">👨‍🏫 คุณครูพาเล่น</button>
+                    <button class="mode-btn" onclick="startGame('solo')">🏠 เล่นคนเดียว</button>
+                    <button class="mode-btn" onclick="startGame('friends')">👫 เล่นกับเพื่อน</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reward Modal -->
+        <div id="reward-modal" class="overlay">
+            <div class="message-box reward-box">
+                <h1>เก่งมาก! 🎉</h1>
+                <p id="reward-msg">ข้อความรางวัล</p>
+                <button class="btn" onclick="closeReward()">ไปต่อเลย!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Overlay -->
+    <div id="feedback-overlay" class="feedback-overlay">
+        <div id="feedback-icon"></div>
+    </div>
+
+    <!-- Bird Sounds (Google Actions Sound Library) -->
+    <audio id="bg-music" loop>
+        <source src="https://actions.google.com/sounds/v1/animals/birds_chirping.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- Confetti Library for Fireworks -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
